@@ -22,7 +22,7 @@ public class BeanfarmCommands {
 
     @ShellMethod(key = "employees",value = "I will hit the api/employees?access_token")
     public String getRandomDadJoke() {
-        BeanfarmResponse random = beanfarmClient.random();
+        BeanfarmResponse random = beanfarmClient.random(authHttpServer.getAccessToken());
         return random.message();
     }
     @ShellMethod(key = "authenticate", value ="Sign into the beanfarm using Google")
@@ -40,11 +40,4 @@ public class BeanfarmCommands {
         return authHttpServer.getAccessToken();
     }
 
-    
-    @ShellMethod(key = "getEmployee",value = "hit the employees api")
-    public String hitEmployees() {
-
-        
-        return authHttpServer.getAccessToken();
-    }
 }
