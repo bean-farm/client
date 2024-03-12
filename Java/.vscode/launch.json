@@ -12,11 +12,10 @@
         },
         {
             "type": "java",
-            "name": "BeanfarmCommand",
+            "name": "Application",
             "request": "launch",
-            "mainClass": "com.beanfarm.BeanfarmCommand",
+            "mainClass": "com.beanfarm.Application",
             "projectName": "beanfarm",
-            "args": "auth",
             "env": {
 
         }

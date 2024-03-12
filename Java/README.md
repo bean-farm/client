@@ -1,24 +1,11 @@
-## Micronaut 4.3.4 Documentation
+# Dad Joke CLI  
+This is a CLI that will give you a random dad joke. It was written in Java using
 
-- [User Guide](https://docs.micronaut.io/4.3.4/guide/index.html)
-- [API Reference](https://docs.micronaut.io/4.3.4/api/index.html)
-- [Configuration Reference](https://docs.micronaut.io/4.3.4/guide/configurationreference.html)
-- [Micronaut Guides](https://guides.micronaut.io/index.html)
----
+- Spring Boot 3
+- Spring Framework 6
+- Spring Shell
+- GraalVM
+- Maven
+- Java 17
 
-- [Micronaut Maven Plugin documentation](https://micronaut-projects.github.io/micronaut-maven-plugin/latest/)
-## Feature http-client documentation
-
-- [Micronaut HTTP Client documentation](https://docs.micronaut.io/latest/guide/index.html#nettyHttpClient)
-
-
-## Feature serialization-jackson documentation
-
-- [Micronaut Serialization Jackson Core documentation](https://micronaut-projects.github.io/micronaut-serialization/latest/guide/)
-
-
-## Feature maven-enforcer-plugin documentation
-
-- [https://maven.apache.org/enforcer/maven-enforcer-plugin/](https://maven.apache.org/enforcer/maven-enforcer-plugin/)
-
-
+If you want to check out the video tutorial  for this project, you can find it here: https://youtu.be/8B0IjOIzicU

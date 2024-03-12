@@ -1,11 +1,7 @@
 package com.beanfarm.auth;
 
-import io.micronaut.context.annotation.ConfigurationProperties;
-import io.micronaut.core.annotation.Introspected;
 
-@Introspected
-@ConfigurationProperties("beanfarm.auth.server")
-final class ServerConfiguration {
+final public class ServerConfiguration {
     private String host = "localhost";
     private int port = 8081;                       
     private String context = "/auth";
