@@ -6,6 +6,6 @@ import com.beanfarm.model.BeanfarmResponse;
 
 public interface BeanfarmClient {
 
-    @GetExchange("/")
+    @GetExchange("api/employees")
     BeanfarmResponse random();
 }

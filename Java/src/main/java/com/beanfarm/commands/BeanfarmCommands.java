@@ -13,26 +13,38 @@ import com.beanfarm.model.BeanfarmResponse;
 @ShellComponent
 public class BeanfarmCommands {
 
-    private final BeanfarmClient dadJokeClient;
+    private final BeanfarmClient beanfarmClient;
+    private AuthHttpServer authHttpServer;
 
-    public BeanfarmCommands(BeanfarmClient dadJokeClient) {
-        this.dadJokeClient = dadJokeClient;
+    public BeanfarmCommands(BeanfarmClient beanfarmClient) {
+        this.beanfarmClient = beanfarmClient;
     }
 
-    @ShellMethod(key = "random",value = "I will return a random dad joke!")
+    @ShellMethod(key = "employees",value = "I will hit the api/employees?access_token")
     public String getRandomDadJoke() {
-        BeanfarmResponse random = dadJokeClient.random();
-        return random.joke();
+        BeanfarmResponse random = beanfarmClient.random();
+        return random.message();
     }
     @ShellMethod(key = "authenticate", value ="Sign into the beanfarm using Google")
     public String authenticate() throws URISyntaxException{
         System.out.println("Click on the link to start authentication:\n");
-        AuthHttpServer authHttpServer = new AuthHttpServer(new ServerConfiguration());
+        authHttpServer = new AuthHttpServer(new ServerConfiguration());
         ClientConfiguration clientConfiguration = new ClientConfiguration();
         System.out.println(clientConfiguration.generateAuthUri(authHttpServer.config.getRedirectUri()));
         authHttpServer.start();
-
-        return "Authed";
+        return "authed";
     }
 
+    @ShellMethod(key = "accessToken",value = "I will return the access token of the authenticated user")
+    public String getAcceToken() {
+        return authHttpServer.getAccessToken();
+    }
+
+    
+    @ShellMethod(key = "getEmployee",value = "hit the employees api")
+    public String hitEmployees() {
+
+        
+        return authHttpServer.getAccessToken();
+    }
 }

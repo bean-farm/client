@@ -19,11 +19,11 @@ public class Application {
 	@Bean
 	BeanfarmClient dadJokeClient() {
 		WebClient client = WebClient.builder()
-				.baseUrl("https://icanhazdadjoke.com")
+				.baseUrl("http://localhost:5000/")
 				.defaultHeader("Accept","application/json")
 				.build();
 
-		HttpServiceProxyFactory factory = HttpServiceProxyFactory.builder(WebClientAdapter.forClient(client)).build();
+		HttpServiceProxyFactory factory = HttpServiceProxyFactory.builderFor(WebClientAdapter.create(client)).build();
 		return factory.createClient(BeanfarmClient.class);
 	}
 }

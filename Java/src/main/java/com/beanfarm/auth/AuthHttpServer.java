@@ -40,7 +40,7 @@ final public class AuthHttpServer {
         else return "";
     }
 
-    public void start(){
+    public String start(){
         try {
             var latch = new CountDownLatch(1);
             var server = HttpServer.create(new InetSocketAddress(config.getHost(), config.getPort()), 0);
@@ -51,15 +51,6 @@ final public class AuthHttpServer {
                 
                 try {
                     URI accessTokenURL = new URI("https://oauth2.googleapis.com/token"+"?client_id="+System.getenv("CLIENT_ID")+"&client_secret="+System.getenv("CLIENT_SECRET")+"&redirect_uri=http://localhost:8081/auth&grant_type=authorization_code&code="+URLDecoder.decode(code, StandardCharsets.UTF_8));
-
-                    // UriBuilder.of("https://oauth2.googleapis.com")
-                    // .path("/token")
-                    // .queryParam("client_id", System.getenv("CLIENT_ID"))
-                    // .queryParam("client_secret", System.getenv("CLIENT_SECRET"))
-                    // .queryParam("redirect_uri", "http://localhost:8081/auth")
-                    // .queryParam("grant_type", "authorization_code")
-                    // .queryParam("code", URLDecoder.decode(code, StandardCharsets.UTF_8))
-                    // .build();
                     System.out.println(accessTokenURL);
                     HttpURLConnection conn = (HttpURLConnection) accessTokenURL.toURL().openConnection();
                     conn.setRequestMethod("POST");
@@ -79,7 +70,7 @@ final public class AuthHttpServer {
                     
                     StringBuilder response = new StringBuilder();
                     String responseLine = null;
-                    String accessToken = "";
+                    accessToken = "";
                     while ((responseLine = br.readLine()) != null) {
                         response.append(responseLine.trim());
                         if (responseLine.contains("\"access_token\":")){
@@ -108,7 +99,7 @@ final public class AuthHttpServer {
             server.stop(0);
 
             System.out.println("Success! You are now authenticated!");
-
+            return accessToken;
         } catch (IOException | InterruptedException e) {
             throw new RuntimeException(e);
         }

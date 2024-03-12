@@ -1,4 +1,4 @@
 package com.beanfarm.model;
 
-public record BeanfarmResponse(String id, String joke, Integer status) {
+public record BeanfarmResponse(String message, String joke, Integer status) {
 }
