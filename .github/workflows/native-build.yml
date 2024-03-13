@@ -9,14 +9,11 @@ jobs:
     name: Run 'spring-native-graal'
     runs-on: ubuntu-latest
     timeout-minutes: 10
-    strategy:
-      matrix:
-        version: [21.0.3] 
     steps:
       - uses: actions/checkout@v3
       - uses: graalvm/setup-graalvm@v1
         with:
-          version: ${{ matrix.version }}
+          distribution: 'graalvm'
           java-version: '21'
           components: 'native-image'
           github-token: ${{ secrets.GITHUB_TOKEN }}
