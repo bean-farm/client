@@ -5,10 +5,13 @@ on:
       - main
 
 jobs:
-  run:
-    name: Run 'spring-native-graal'
-    runs-on: ubuntu-latest
-    timeout-minutes: 20
+  build:
+    name: HelloWorld on ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 25
+    strategy:
+      matrix:
+        os: [windows-latest]
     steps:
       - uses: actions/checkout@v3
       - uses: graalvm/setup-graalvm@v1
@@ -28,6 +31,9 @@ jobs:
         run: | 
           cd Java 
           mvn -Pnative native:compile -DskipTests
-      - name: Copy native image to /build directory
-        run: cp target/native-image/* /build/
+      - name: create artifact
+        uses: actions/upload-artifact@v2
+        with: 
+          name: beanfarm-client-${{ matrix.os }}
+          path: D:\a\client\client\Java\target\beanfarm*
       # TODO: copy the native image to the /build directory 
