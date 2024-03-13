@@ -8,7 +8,7 @@ jobs:
   run:
     name: Run 'spring-native-graal'
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 20
     steps:
       - uses: actions/checkout@v3
       - uses: graalvm/setup-graalvm@v1
