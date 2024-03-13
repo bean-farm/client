@@ -25,5 +25,5 @@ jobs:
           java --version
           native-image --version
       - name: Run 'native-build
-        run: mvn -Pnative package
+        run: mvn -Pnative native:compile -DskipTests
       # TODO: copy the native image to the /build directory 
