@@ -18,6 +18,12 @@ jobs:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           cache: 'maven'
           native-image-job-reports: 'true'
+      - name: Example step
+        run: |
+          echo "GRAALVM_HOME: $GRAALVM_HOME"
+          echo "JAVA_HOME: $JAVA_HOME"
+          java --version
+          native-image --version
       - name: Run 'native-build
         run: mvn -Pnative package
       # TODO: copy the native image to the /build directory 
