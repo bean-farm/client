@@ -34,6 +34,6 @@ jobs:
       - name: create artifact
         uses: actions/upload-artifact@v2
         with: 
-          name: assets-for-download-${{ matrix.os }}
-          path: /home/runner/work/client/client/Java/target/beanfarm*
+          name: beanfarm-client-${{ matrix.os }}
+          path: beanfarm*
       # TODO: copy the native image to the /build directory 
