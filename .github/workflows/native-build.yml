@@ -5,10 +5,13 @@ on:
       - main
 
 jobs:
-  run:
-    name: Run 'spring-native-graal'
-    runs-on: ubuntu-latest
+  build:
+    name: HelloWorld on ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
     timeout-minutes: 20
+    strategy:
+      matrix:
+        os: [macos-latest, windows-latest, ubuntu-latest]
     steps:
       - uses: actions/checkout@v3
       - uses: graalvm/setup-graalvm@v1
