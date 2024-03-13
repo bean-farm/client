@@ -24,12 +24,11 @@ jobs:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           cache: 'maven'
           native-image-job-reports: 'true'
-      - name: Example step
+      - name: Add secrets
         run: |
-          echo "GRAALVM_HOME: $GRAALVM_HOME"
-          echo "JAVA_HOME: $JAVA_HOME"
-          java --version
-          native-image --version
+          echo client.id=${{ secrets.CLIENT_ID }} >> src/main/resources/application.properties
+          echo server.id=${{ secrets.CLIENT_ID }} >> src/main/resources/application.properties
+          echo server.secret=${{ secrets.CLIENT_SECRET }} >> src/main/resources/application.properties
       - name: Run 'native-build
         run: | 
           cd Java 
