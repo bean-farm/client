@@ -2,6 +2,7 @@ package com.beanfarm.commands;
 
 import java.net.URISyntaxException;
 
+import org.springframework.context.annotation.Bean;
 import org.springframework.shell.standard.ShellComponent;
 import org.springframework.shell.standard.ShellMethod;
 import com.beanfarm.auth.AuthHttpServer;
@@ -14,10 +15,14 @@ import com.beanfarm.model.BeanfarmResponse;
 public class BeanfarmCommands {
 
     private final BeanfarmClient beanfarmClient;
+    private final ServerConfiguration serverConfig;
+    private final ClientConfiguration clientConfig;
     private AuthHttpServer authHttpServer;
 
-    public BeanfarmCommands(BeanfarmClient beanfarmClient) {
+    public BeanfarmCommands(BeanfarmClient beanfarmClient, ServerConfiguration serverConfig, ClientConfiguration clientConfig) {
         this.beanfarmClient = beanfarmClient;
+        this.serverConfig = serverConfig;
+        this.clientConfig = clientConfig;
     }
 
     @ShellMethod(key = "employees",value = "I will hit the api/employees?access_token")
@@ -28,9 +33,8 @@ public class BeanfarmCommands {
     @ShellMethod(key = "authenticate", value ="Sign into the beanfarm using Google")
     public String authenticate() throws URISyntaxException{
         System.out.println("Click on the link to start authentication:\n");
-        authHttpServer = new AuthHttpServer(new ServerConfiguration());
-        ClientConfiguration clientConfiguration = new ClientConfiguration();
-        System.out.println(clientConfiguration.generateAuthUri(authHttpServer.config.getRedirectUri()));
+        authHttpServer = new AuthHttpServer(serverConfig);
+        System.out.println(clientConfig.generateAuthUri(authHttpServer.config.redirectUri()));
         authHttpServer.start();
         return "";
     }

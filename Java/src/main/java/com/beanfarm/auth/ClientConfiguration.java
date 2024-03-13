@@ -3,38 +3,18 @@ package com.beanfarm.auth;
 import java.net.URI;
 import java.net.URISyntaxException;
 
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.context.annotation.Configuration;
 
-final public class ClientConfiguration {
-    private String url = "https://accounts.google.com/" ;
-    private String clientId = System.getenv("CLIENT_ID");
-    private String scope = "profile";
-    private String responseType = "code";
+@ConfigurationProperties(prefix = "client")
+public record ClientConfiguration(
+     String url,
+     String id,
+     String scope,
+     String responseType){
 
     public URI generateAuthUri(String redirectUri) throws URISyntaxException {
-        return new URI(url+"o/oauth2/auth"+"?client_id="+clientId+"&scope="+scope+"&redirect_uri="+redirectUri+"&response_type="+responseType);
-    }
-
-    public String getUrl() {
-        return url;
-    }
-
-    public void setUrl(String url) {
-        this.url = url;
-    }
-
-    public String getClientId() {
-        return clientId;
-    }
-
-    public void setClientId(String clientId) {
-        this.clientId = clientId;
-    }
-
-    public String getScope() {
-        return scope;
-    }
-
-    public void setScope(String scope) {
-        this.scope = scope;
+        return new URI(url+"o/oauth2/auth"+"?client_id="+id+"&scope="+scope+"&redirect_uri="+redirectUri+"&response_type="+responseType);
     }
 }

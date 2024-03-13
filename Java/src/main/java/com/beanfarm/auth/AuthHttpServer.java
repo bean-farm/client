@@ -19,9 +19,9 @@ import java.nio.charset.StandardCharsets;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
 
+import org.springframework.context.annotation.Bean;
 
 import java.net.URLDecoder;
-
 
 
 
@@ -29,6 +29,8 @@ final public class AuthHttpServer {
 
     final public ServerConfiguration config;
     private String accessToken;
+
+
 
     public AuthHttpServer(ServerConfiguration config) {
         this.config = config;
@@ -39,18 +41,18 @@ final public class AuthHttpServer {
         }
         else return "";
     }
-
+   
     public String start(){
         try {
             var latch = new CountDownLatch(1);
-            var server = HttpServer.create(new InetSocketAddress(config.getHost(), config.getPort()), 0);
-            server.createContext(config.getContext(), exchange -> {
+            var server = HttpServer.create(new InetSocketAddress(config.host(), config.port()), 0);
+            server.createContext(config.context(), exchange -> {
                 var code = exchange.getRequestURI().toString().split("=")[1].split("&")[0];
                 System.out.println("Code retrieved. Exchanging for an access token...");
 
                 
                 try {
-                    URI accessTokenURL = new URI("https://oauth2.googleapis.com/token"+"?client_id="+System.getenv("CLIENT_ID")+"&client_secret="+System.getenv("CLIENT_SECRET")+"&redirect_uri=http://localhost:8081/auth&grant_type=authorization_code&code="+URLDecoder.decode(code, StandardCharsets.UTF_8));
+                    URI accessTokenURL = new URI("https://oauth2.googleapis.com/token"+"?client_id="+config.id()+"&client_secret="+config.secret()+"&redirect_uri=http://localhost:8081/auth&grant_type=authorization_code&code="+URLDecoder.decode(code, StandardCharsets.UTF_8));
                     System.out.println(accessTokenURL);
                     HttpURLConnection conn = (HttpURLConnection) accessTokenURL.toURL().openConnection();
                     conn.setRequestMethod("POST");
@@ -95,7 +97,7 @@ final public class AuthHttpServer {
             });
             server.start();
             System.out.println("Waiting for redirect URI...");
-            latch.await(config.getTimeout(), TimeUnit.SECONDS);
+            latch.await(config.timeout(), TimeUnit.SECONDS);
             server.stop(0);
             if (accessToken == null || accessToken == ""){
                 System.out.println("Authentication failed");
