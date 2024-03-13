@@ -17,6 +17,7 @@ jobs:
           java-version: '21'
           github-token: ${{ secrets.GITHUB_TOKEN }}
           cache: 'maven'
+          native-image-job-reports: 'true'
       - name: Run 'native-build
-        run: mvn -Pnative native:compile -DskipTests
+        run: mvn -Pnative package
       # TODO: copy the native image to the /build directory 
