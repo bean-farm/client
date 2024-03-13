@@ -32,7 +32,7 @@ public class BeanfarmCommands {
         ClientConfiguration clientConfiguration = new ClientConfiguration();
         System.out.println(clientConfiguration.generateAuthUri(authHttpServer.config.getRedirectUri()));
         authHttpServer.start();
-        return "authed";
+        return "";
     }
 
     @ShellMethod(key = "accessToken",value = "I will return the access token of the authenticated user")

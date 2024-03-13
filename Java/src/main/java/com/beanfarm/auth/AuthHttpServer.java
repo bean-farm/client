@@ -46,7 +46,7 @@ final public class AuthHttpServer {
             var server = HttpServer.create(new InetSocketAddress(config.getHost(), config.getPort()), 0);
             server.createContext(config.getContext(), exchange -> {
                 var code = exchange.getRequestURI().toString().split("=")[1].split("&")[0];
-                System.out.println("Code retrieved. Exchanging for an access token..." + code); //TODO: remove code
+                System.out.println("Code retrieved. Exchanging for an access token...");
 
                 
                 try {
@@ -97,8 +97,11 @@ final public class AuthHttpServer {
             System.out.println("Waiting for redirect URI...");
             latch.await(config.getTimeout(), TimeUnit.SECONDS);
             server.stop(0);
-
-            System.out.println("Success! You are now authenticated!");
+            if (accessToken == null || accessToken == ""){
+                System.out.println("Authentication failed");
+            } else{
+                System.out.println("Success! You are now authenticated!");
+            }
             return accessToken;
         } catch (IOException | InterruptedException e) {
             throw new RuntimeException(e);
