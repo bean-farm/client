@@ -28,4 +28,11 @@ jobs:
         run: | 
           cd Java 
           mvn -Pnative native:compile -DskipTests
+              - name: Step 3 - Use the Upload Artifact GitHub Action
+      
+      - name: create artifact
+        uses: actions/upload-artifact@v2
+        with: 
+          name: assets-for-download
+          path: /home/runner/work/client/client/Java/target/beanfarm
       # TODO: copy the native image to the /build directory 
