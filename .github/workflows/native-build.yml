@@ -28,4 +28,6 @@ jobs:
         run: | 
           cd Java 
           mvn -Pnative native:compile -DskipTests
+      - name: Copy native image to /build directory
+        run: cp target/native-image/* /build/
       # TODO: copy the native image to the /build directory 
