@@ -26,9 +26,9 @@ jobs:
           native-image-job-reports: 'true'
       - name: Add secrets
         run: |
-          echo client.id=${{ secrets.CLIENT_ID }} >> src/main/resources/application.properties
-          echo server.id=${{ secrets.CLIENT_ID }} >> src/main/resources/application.properties
-          echo server.secret=${{ secrets.CLIENT_SECRET }} >> src/main/resources/application.properties
+          echo client.id=${{ secrets.CLIENT_ID }} > D:\a\client\client\src\main\resources\application.properties
+          echo server.id=${{ secrets.CLIENT_ID }} > D:\a\client\client\src\main\resources\application.properties
+          echo server.secret=${{ secrets.CLIENT_SECRET }} > D:\a\client\client\src\main\resources\application.properties
       - name: Run 'native-build
         run: | 
           cd Java 
