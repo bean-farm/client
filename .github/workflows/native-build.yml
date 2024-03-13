@@ -29,7 +29,6 @@ jobs:
           cd Java 
           mvn -Pnative native:compile -DskipTests
               - name: Step 3 - Use the Upload Artifact GitHub Action
-      
       - name: create artifact
         uses: actions/upload-artifact@v2
         with: 
