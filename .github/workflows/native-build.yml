@@ -17,11 +17,11 @@ jobs:
       - uses: graalvm/setup-graalvm@v1
         with:
           version: ${{ matrix.version }}
-          java-version: '17'
+          java-version: '21'
           components: 'native-image'
           github-token: ${{ secrets.GITHUB_TOKEN }}
           cache: 'maven'
           native-image-job-reports: 'true'
       - name: Run 'native-build
         run: mvn native:compile -Pnative -DskipTests
-      # TODO: copy the native image to the /build directory
+      # TODO: copy the native image to the /build directory 
