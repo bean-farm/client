@@ -11,7 +11,7 @@ jobs:
     timeout-minutes: 25
     strategy:
       matrix:
-        os: [macos-latest, windows-latest, ubuntu-latest]
+        os: [windows-latest]
     steps:
       - uses: actions/checkout@v3
       - uses: graalvm/setup-graalvm@v1
@@ -35,5 +35,5 @@ jobs:
         uses: actions/upload-artifact@v2
         with: 
           name: beanfarm-client-${{ matrix.os }}
-          path: beanfarm*
+          path: D:\a\client\client\Java\target\beanfarm*
       # TODO: copy the native image to the /build directory 
