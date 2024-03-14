@@ -29,6 +29,7 @@ jobs:
           ls
           sed -i "s/CLIENT_ID/${{ secrets.CLIENT_ID }}/g" Java\src\main\resources\application.properties
           sed -i "s/CLIENT_SECRET/${{ secrets.CLIENT_SECRET }}/g" Java\src\main\resources\application.properties
+          cat Java\src\main\resources\application.properties
       - name: Run 'native-build
         run: | 
           cd Java 
