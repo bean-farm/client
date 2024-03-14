@@ -29,7 +29,7 @@ final public class AuthHttpServer {
 
     final public ServerConfiguration config;
     private String accessToken;
-
+    
 
 
     public AuthHttpServer(ServerConfiguration config) {
@@ -41,8 +41,13 @@ final public class AuthHttpServer {
         }
         else return "";
     }
+    public void setAccesstoken(String accessToken){
+        this.accessToken=accessToken;
+    }
    
     public String start(){
+
+
         try {
             var latch = new CountDownLatch(1);
             var server = HttpServer.create(new InetSocketAddress(config.host(), config.port()), 0);

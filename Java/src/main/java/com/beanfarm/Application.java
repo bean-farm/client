@@ -24,6 +24,7 @@ public class Application {
 	BeanfarmClient dadJokeClient() {
 		WebClient client = WebClient.builder()
 				.baseUrl("http://localhost:5000/")
+				// .baseUrl("http://bean-farm.eu-west-1.elasticbeanstalk.com/")
 				.defaultHeader("Accept","application/json")
 				.build();
 

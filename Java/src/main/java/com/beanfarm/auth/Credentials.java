@@ -2,6 +2,7 @@ package com.beanfarm.auth;
 
 import java.io.File;
 import java.io.FileOutputStream;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 
@@ -39,5 +40,18 @@ final public class Credentials {
             throw new RuntimeException(e);
         }
 
+    }
+
+    public static String fetch(){
+        try (var os = new FileInputStream(LOCATION)) {
+            
+            
+            var content = os.readAllBytes();
+            String s = new String(content);
+            return s.substring(s.indexOf("beanfarm.auth.credentials.token=")+32,s.length()-1);
+
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 }
