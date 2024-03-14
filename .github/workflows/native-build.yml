@@ -26,6 +26,7 @@ jobs:
           native-image-job-reports: 'true'
       - name: Add secrets
         run: |
+          ls
           sed -i "s/${CLIENT_ID}/${{ secrets.CLIENT_ID }}/g" D:\a\client\client\src\main\resources\application.properties
           sed -i "s/${CLIENT_SECRET}/${{ secrets.CLIENT_SECRET }}/g" D:\a\client\client\src\main\resources\application.properties
       - name: Run 'native-build
