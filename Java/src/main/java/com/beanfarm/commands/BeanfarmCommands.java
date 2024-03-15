@@ -81,7 +81,9 @@ public class BeanfarmCommands {
         String response = authenticate();
         System.out.println("Please enter your name");
         Scanner s = new Scanner(System.in);
-        ProfileResponse profileResponse = beanfarmClient.createProfile(authHttpServer.getAccessToken(), new ProfilePost(s.nextLine()));
+        String name = s.nextLine();
+        System.out.println(name);
+        ProfileResponse profileResponse = beanfarmClient.createProfile(authHttpServer.getAccessToken(), new ProfilePost(name));
         return "Logged in with user id: "+ profileResponse.profileId() +"\nWelcome "+ profileResponse.profileName();
     }
 
