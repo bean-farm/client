@@ -117,5 +117,11 @@ public class BeanfarmCommands {
         response.stream().forEach(System.out::println);
         return "";
     }
+    
+    @ShellMethod(key = "getAuthToken",value = "Get oauth token for using postman")
+    public String getToken() throws URISyntaxException {
+        String response = authenticate();
+        return authHttpServer.getAccessToken();
+    }
 }
 
