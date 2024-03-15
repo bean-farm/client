@@ -82,7 +82,7 @@ public class BeanfarmCommands {
         System.out.println("Please enter your name");
         Scanner s = new Scanner(System.in);
         String name = s.nextLine();
-        System.out.println(name);
+        System.out.println("Access token:" + authHttpServer.getAccessToken());
         ProfileResponse profileResponse = beanfarmClient.createProfile(authHttpServer.getAccessToken(), new ProfilePost(name));
         return "Logged in with user id: "+ profileResponse.profileId() +"\nWelcome "+ profileResponse.profileName();
     }
