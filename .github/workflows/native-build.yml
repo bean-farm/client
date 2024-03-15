@@ -33,7 +33,8 @@ jobs:
       - name: Run 'native-build
         run: | 
           cd Java 
-          mvn -Pnative native:compile -DskipTests
+          mvn package -DskipTests
+          native-image -jar target\beanfarm-0.0.1-SNAPSHOT.jar  beanfarmLocal
       - name: create artifact
         uses: actions/upload-artifact@v2
         with: 
