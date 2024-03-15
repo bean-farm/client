@@ -86,7 +86,7 @@ final public class AuthHttpServer {
                         }
                     }
 
-                    Credentials.store(accessToken);
+                    //Credentials.store(accessToken);
 
                     var message = "Success! Authentication completed. You can close web browser and return to the terminal window.";
 
