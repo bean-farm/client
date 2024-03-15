@@ -18,27 +18,27 @@ import java.util.List;
 public interface BeanfarmClient {
 
     @GetExchange("api/employees")
-    BeanfarmResponse random(@RequestHeader(name = "access_token") String token);
+    BeanfarmResponse random(@RequestHeader(name = "access-token") String token);
 
     @GetExchange("api/getaction")
-    List<ActionResponse> actions(@RequestHeader(name = "access_token") String token);
+    List<ActionResponse> actions(@RequestHeader(name = "access-token") String token);
 
     @GetExchange("api/getplotsbyid")
-    List<String> getUsersPlots(@RequestHeader(name = "access_token") String token);
+    List<String> getUsersPlots(@RequestHeader(name = "access-token") String token);
 
     @GetExchange("api/listbeans")
-    List<String> listBeans(@RequestHeader(name = "access_token") String token);
+    List<String> listBeans(@RequestHeader(name = "access-token") String token);
 
     @PostExchange("api/createprofile")
-    ProfileResponse createProfile(@RequestHeader(name = "access_token") String token, @RequestBody ProfilePost profile);
+    ProfileResponse createProfile(@RequestHeader(name = "access-token") String token, @RequestBody ProfilePost profile);
     
     @PostExchange("api/plantbean/{beanPlotId}/{beanTypeID}")
-    List<String> plantBean(@RequestHeader(name = "access_token") String token, @PathVariable(value = "beanPlotId") Long plotId, @PathVariable(value = "beanTypeID") Long beanTypeId);
+    List<String> plantBean(@RequestHeader(name = "access-token") String token, @PathVariable(value = "beanPlotId") Long plotId, @PathVariable(value = "beanTypeID") Long beanTypeId);
     
     @PutExchange("api/waterplot/{beanPlotId}")
-    List<String> waterPlot(@RequestHeader(name = "access_token") String token, @PathVariable(value = "beanPlotId") Long plotId);
+    List<String> waterPlot(@RequestHeader(name = "access-token") String token, @PathVariable(value = "beanPlotId") Long plotId);
 
     @PutExchange("api/harvestbeans/{beanPlotId}")
-    List<String> harvestPlot(@RequestHeader(name = "access_token") String token, @PathVariable(value = "beanPlotId") Long plotId);
+    List<String> harvestPlot(@RequestHeader(name = "access-token") String token, @PathVariable(value = "beanPlotId") Long plotId);
 
 }
